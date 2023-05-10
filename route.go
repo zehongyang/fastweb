@@ -1,9 +1,9 @@
 package fastweb
 
 import (
-	"fastweb/config"
-	"fastweb/logger"
 	"github.com/gin-gonic/gin"
+	"github.com/zehongyang/fastweb/config"
+	"github.com/zehongyang/fastweb/logger"
 	"go.uber.org/zap"
 	"reflect"
 	"runtime"

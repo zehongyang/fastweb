@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"fastweb/config"
+	"github.com/zehongyang/fastweb/config"
 	"go.uber.org/zap"
 )
 
