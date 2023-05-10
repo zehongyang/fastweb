@@ -1,4 +1,4 @@
-module fastweb
+module github.com/zehongyang/fastweb
 
 go 1.19
 
