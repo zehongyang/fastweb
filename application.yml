@@ -1,0 +1,9 @@
+web:
+  - server: "test"
+    port: ":8082"
+    middlewares: ["fastweb.MiddlewareTest"]
+    routers:
+      - group: "/admin"
+        middlewares: []
+        paths:
+          - {method: "POST",path: "/test",handler: "fastweb.HandlerTest"}
