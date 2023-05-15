@@ -2,8 +2,8 @@ package fastweb
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/zehongyang/fastweb/config"
-	"github.com/zehongyang/fastweb/logger"
+	"github.com/zehongyang/utils/config"
+	"github.com/zehongyang/utils/logger"
 	"go.uber.org/zap"
 	"reflect"
 	"runtime"
@@ -46,7 +46,7 @@ func New() *Engine {
 	var wc WebConfig
 	err := config.Load(&wc)
 	if err != nil {
-		logger.F(zap.Error(err))
+		logger.F("", zap.Error(err))
 	}
 	return &Engine{config: wc, handlers: make(map[string]HandleFunc), errCh: make(chan error)}
 }
@@ -54,7 +54,7 @@ func New() *Engine {
 func (e *Engine) getHandler(hf string) gin.HandlerFunc {
 	handleFunc, ok := e.handlers[hf]
 	if !ok {
-		logger.E(zap.Any("handler not found", hf))
+		logger.E("", zap.Any("handler not found", hf))
 		return nil
 	}
 	return func(ctx *gin.Context) {
@@ -69,7 +69,7 @@ func (e *Engine) Register(fns ...func() HandleFunc) {
 		name := runtime.FuncForPC(reflect.ValueOf(fn).Pointer()).Name()
 		names := strings.Split(name, "/")
 		if len(names) < 1 {
-			logger.W(zap.Any("not found func name", name))
+			logger.W("", zap.Any("not found func name", name))
 			continue
 		}
 		e.handlers[names[len(names)-1]] = fn()
